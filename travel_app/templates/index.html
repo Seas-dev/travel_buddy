@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Login/Registration</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to TripBuddy!</h1>
+		{% if messages %}
+		<ul class="messages text-danger">
+			{% for message in messages %}
+			<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<div class="row">
+			<div class="col">
+				<form action="/validreg" method="post">
+					{% csrf_token %}
+					<fieldset class="border p-2 border-primary">
+						<legend class="w-auto">Register</legend>
+						<div class="form-group">
+							<label for="name">Name:</label>
+							<input type="text" name="name" id="name" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="reg-username">Username:</label>
+							<input type="text" name="username" id="reg-username" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="reg-password">Password:</label>
+							<input type="password" name="password" id="reg-password" class="form-control">
+							<small class="form-text text-muted">Passwords need to be at least 8 characters.</small>
+						</div>
+						<div class="form-group">
+							<label for="pw_confirm">Confirm PW:</label>
+							<input type="password" name="pw_confirm" id="pw_confirm" class="form-control">									
+						</div>
+						<input type="submit" value="Register" class="btn btn-primary float-right">
+					</fieldset>
+				</form>
+
+			</div>
+			<div class="col">
+				<form action="/validlog" method="post">
+					{% csrf_token %}
+					<fieldset class="border p-2 border-primary">
+						<legend class="w-auto">Login</legend>
+						<div class="form-group">
+							<label for="log-username">Username:</label>
+							<input class="form-control" type="text" name="username" id="log-username">
+						</div>
+						<div class="form-group">
+							<label for="log-password">Password:</label>
+							<input class="form-control" type="password" name="password" id="log-password">
+						</div>
+						<input type="submit" value="Login" class="btn btn-primary float-right">
+					</fieldset>
+				</form>
+			</div>
+
+
+
+
+		</div>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <p class="float-right"><a href="/logout">Logout</a></p>
+        <p class="float-right"><a href="/dashboard">Home</a></p>
+    </header>
+    <div class="container">
+        <h1>Add a Trip</h1>
+
+        {% if messages %}
+		<ul class="messages text-danger">
+			{% for message in messages %}
+			<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+		</ul>
+        {% endif %}
+        <div class="row add_trip">
+            <div class="col">
+                <form action="/validtrip" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="destination">Destination:</label>
+                        <input type="text" name="destination" id="destination" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" name="description" id="description" class="form-control">
+                    </div>
+                    <div class="trip_form">
+                        <label for="date_from">Travel Date From:</label>
+                        <input type="date" name="travel_date_from" id="date_from" class="form-control">
+                    </div>
+                    <div class="trip_form">
+                        <label for="date_to">Travel Date To:</label>
+                        <input type="date" name="travel_date_to" id="date_to" class="form-control">
+                    </div>
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
